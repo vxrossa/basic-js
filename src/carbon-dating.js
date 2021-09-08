@@ -17,7 +17,13 @@ const HALF_LIFE_PERIOD = 5730;
  * dateSample('WOOT!') => false
  *
  */
-export default function dateSample(/* sampleActivity */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+export default function dateSample(sampleActivity) {
+  let k = 0.693 / HALF_LIFE_PERIOD;
+  let answer = 0;
+  answer = Math.ceil((Math.log(MODERN_ACTIVITY/parseFloat(sampleActivity))/Math.log(Math.E)) / k);
+  if(typeof answer == "NaN"){
+    return false;
+  } else{
+    return answer;
+  }
 }
