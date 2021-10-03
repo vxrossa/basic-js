@@ -33,6 +33,9 @@ export default function dateSample(sampleActivity) {
   if(sampleActivity == null){
     return false;
   }
+  if(isNaN(parseFloat(sampleActivity))){
+    return false;
+  }
   let k = 0.693 / HALF_LIFE_PERIOD;
   let answer = 0;
   answer = Math.ceil((Math.log(MODERN_ACTIVITY/parseFloat(sampleActivity))/Math.log(Math.E)) / k);
