@@ -11,7 +11,15 @@ import { NotImplementedError } from '../extensions/index.js';
  * getSeason(new Date(2020, 02, 31)) => 'spring'
  * 
  */
-export default function getSeason(date) {
+ export default function getSeason(date) {
+  if(!date){
+    return 'Unable to determine the time of year!';
+  }
+  try {
+    date.toUTCString();
+  } catch {
+    throw new Error('Invalid date!')
+  }
   let month = date.getMonth();
   if(month >= 0 && month <= 1){
     return "winter";
