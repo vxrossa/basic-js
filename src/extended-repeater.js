@@ -16,11 +16,11 @@ import { NotImplementedError } from '../extensions/index.js';
  *
  */
 export default function repeater(str, options) {
-  let repetition = options.repeatTimes;
-  let stringSeparator = options.separator; // +
-  let separatorAddition = options.addition;
-  let addRepetition = options.additionRepeatTimes;
-  let repSeparator = options.additionSeparator; // |
+  let repetition = new String(options.repeatTimes);
+  let stringSeparator = new String(options.separator); // +
+  let separatorAddition = new String(options.addition);
+  let addRepetition = new String(options.additionRepeatTimes);
+  let repSeparator = new String(options.additionSeparator); // |
 
   if(options.separator == undefined){
     stringSeparator = '+';
@@ -28,7 +28,7 @@ export default function repeater(str, options) {
   if(options.additionSeparator == undefined){
     repSeparator = '|';
   }
-  if(options.addition == undefined){
+  if(options.addition == undefined && options.addition !== null){
     separatorAddition = '';
   }
   if(options.additionRepeatTimes == undefined){
@@ -41,7 +41,7 @@ export default function repeater(str, options) {
   completeSeparator = completeSeparator.concat((separatorAddition + repSeparator).repeat(addRepetition - 1) + separatorAddition);
   // console.log(`Complete separator is : ${completeSeparator}`);
 
-  repeated = repeated.concat((str.toString() + completeSeparator + stringSeparator).repeat(repetition - 1) + (str.toString() + completeSeparator));
+  repeated = repeated.concat((new String(str) + completeSeparator + stringSeparator).repeat(repetition - 1) + (new String(str) + completeSeparator));
   // console.log(`Repeated stuff is ${repeated}`);
 
   return repeated;
